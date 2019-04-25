@@ -3,4 +3,14 @@
   <groupId>com.za.utils</groupId>
   <artifactId>interfaceTest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+	 <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+	<dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>testng</artifactId>
+	    <version>6.14.3</version>
+	    <scope>test</scope>
+	</dependency>
+
+  </dependencies>
 </project>
