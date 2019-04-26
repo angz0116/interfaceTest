@@ -1,16 +1,20 @@
 package bean;
-
+/**
+ * 
+ * @author zhaoai
+ *
+ */
 public class ApiDataBean extends BaseBean {
-	private boolean run;
+	private boolean run; // 是否已运行
 	private String desc; // 接口描述
-	private String url;
-	private String method;
-	private String param;
-	private boolean contains;
-	private String status;
-	private String verify;
-	private String save;
-	private String preParam;
+	private String url; // url地址
+	private String method; //post，get请求
+	private String param; // 请求的参数
+	private boolean contains; // 比对字符串
+	private String status; // 状态
+	private String verify; // 返回的结果
+	private String save; // 保存的返回数据
+	private String preParam; // 与请求处理参数
 
 	public boolean isRun() {
 		return run;

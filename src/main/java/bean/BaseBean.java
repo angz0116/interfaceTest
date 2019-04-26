@@ -1,9 +1,9 @@
 package bean;
 
 /**
- * 基础类
+  *  基础类
  * 
- * @author chenwx
+ * @author zhaoai
  *
  */
 public class BaseBean {

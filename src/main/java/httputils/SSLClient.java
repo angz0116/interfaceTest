@@ -12,9 +12,12 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
-
-
-
+/**
+ * SSL客户端client
+ * @author zhaoai
+ *
+ */
+@SuppressWarnings("deprecation")
 public class SSLClient extends DefaultHttpClient {
 	public SSLClient() throws Exception {
 		super();

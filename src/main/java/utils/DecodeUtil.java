@@ -1,5 +1,9 @@
 package utils;
-
+/**
+ * 
+ * @author zhaoai
+ *
+ */
 public class DecodeUtil {
 	public static String decodeUnicode(String theString) {
 

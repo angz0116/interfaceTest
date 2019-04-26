@@ -6,13 +6,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author zhaoai
+ *
+ */
 public class ClassFinder {
 
 
     static ClassLoader classloader = Thread.currentThread().getContextClassLoader();  
     /** 
-     * 获取同一路径下所有子类或接口实现类 
+             *   获取同一路径下所有子类或接口实现类 
      *  
      * @param intf 
      * @return 
@@ -30,7 +34,7 @@ public class ClassFinder {
     }  
   
     /** 
-     * 取得当前类路径下的所有类 
+             *    取得当前类路径下的所有类 
      *  
      * @param cls 
      * @return 
@@ -53,7 +57,7 @@ public class ClassFinder {
     }  
   
     /** 
-     * 迭代查找类 
+             *    迭代查找类 
      *  
      * @param dir 
      * @param pk 

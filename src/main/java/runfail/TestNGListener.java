@@ -9,7 +9,11 @@ import java.util.Set;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-
+/**
+  *    测试案例testNg的listener(成功，失败，跳过，保存结果，是否完成)
+ * @author zhaoai
+ *
+ */
 public class TestNGListener extends TestListenerAdapter {
 
 	@Override
@@ -61,25 +65,17 @@ public class TestNGListener extends TestListenerAdapter {
 			// id = class + method + dataprovider
 			int failedTestId = getId(failedTest);
 
-			// if we saw this test as a failed test before we mark as to be
-			// deleted
-			// or delete this failed test if there is at least one passed
-			// version
-			if (failedTestIds.contains(failedTestId)
-					|| passedTestIds.contains(failedTestId)) {
+			if (failedTestIds.contains(failedTestId)|| passedTestIds.contains(failedTestId)) {
 				testsToBeRemoved.add(failedTest);
 			} else {
 				failedTestIds.add(failedTestId);
 			}
 		}
 
-		// finally delete all tests that are marked
 		for (Iterator<ITestResult> iterator =
 
-		testContext.getFailedTests().getAllResults().iterator(); iterator
-				.hasNext();) {
+		testContext.getFailedTests().getAllResults().iterator(); iterator.hasNext();) {
 			ITestResult testResult = iterator.next();
-
 			if (testsToBeRemoved.contains(testResult)) {
 				// logger.info("Remove repeat Fail Test: " +
 				// testResult.getName());
@@ -92,9 +88,7 @@ public class TestNGListener extends TestListenerAdapter {
 	private int getId(ITestResult result) {
 		int id = result.getTestClass().getName().hashCode();
 		id = id + result.getMethod().getMethodName().hashCode();
-		id = id
-				+ (result.getParameters() != null ? Arrays.hashCode(result
-						.getParameters()) : 0);
+		id = id+ (result.getParameters() != null ? Arrays.hashCode(result.getParameters()) : 0);
 		return id;
 	}
 }

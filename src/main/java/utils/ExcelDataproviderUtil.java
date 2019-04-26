@@ -1,13 +1,16 @@
 package utils;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+/**
+   *     读取excel
+ * @author zhaoai
+ *
+ */
 public class ExcelDataproviderUtil implements Iterator<Object[]> {
     public static void main(String[] args) {
         ExcelDataproviderUtil excelDataproviderUtil = new ExcelDataproviderUtil("/testdata/login.xlsx", "Sheet1");

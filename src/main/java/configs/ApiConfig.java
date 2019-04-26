@@ -8,7 +8,11 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-
+/**
+ * Api配置信息
+ * @author zhaoai
+ *
+ */
 public class ApiConfig {
 	private String rootUrl;	
 	

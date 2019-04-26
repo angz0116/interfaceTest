@@ -7,7 +7,11 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 import base.BaseParpare;
-
+/**
+ * 
+ * @author zhaoai
+ *
+ */
 public class TestFailListener extends TestListenerAdapter {
 
     @Override

@@ -6,8 +6,8 @@ import org.testng.Reporter;
 
 import exceptions.ErrorRespStatusException;
 /**
- * ʧ����������
- * @author admin
+ * 
+ * @author zhaoai
  *
  */
 public class TestNGRetry implements IRetryAnalyzer {

@@ -10,7 +10,7 @@ import java.net.URL;
 
 /**
  * httpclient�������󵽷�����
- * @author admin
+ * @author zhaoai
  *
  */
 public class HttpClientUtil {

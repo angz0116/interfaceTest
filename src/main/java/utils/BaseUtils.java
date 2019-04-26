@@ -1,15 +1,9 @@
 package utils;
-
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,11 +11,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import utils.StringUtil;
+/**
+   *   基础工具类
+ * @author zhaoai
+ *
+ */
 public class BaseUtils {
 	public static ObjectBase pageobjectsbase = new ObjectBase();
-	//获得当前项目的根目录
+	/**
+	   *   获得当前项目的根目录
+	 * @return
+	 */
 	public static String getProjectDir(){
 		String dir = Class.class.getClass().getResource("/").getPath();	
 		String desired_dir = "";
@@ -45,7 +46,10 @@ public class BaseUtils {
 		}
 		return desired_dir;
 	}
-	
+	/**
+	   *    根据路径，删除所有文件的路径
+	 * @param path
+	 */
 	public static void deleteAllFilesInPath(String path){
 		int i;
 		try{			
@@ -71,7 +75,12 @@ public class BaseUtils {
 		
 	}
 	
-	//Get absolute file path for a file which name contains text in dir
+    /**
+             *    根据目录，内容，获取文件路径
+     * @param directory
+     * @param text
+     * @return
+     */
 	public static String getFilePath(String directory,String text){
 		File file = new File(directory);
 		String filepath = null;
@@ -86,7 +95,7 @@ public class BaseUtils {
 		return filepath;
 	}
 	/**
-	 * 多個匹配條件匹配文件（去重）
+	   *  多个匹配条件匹配文件（去重）
 	 * 
 	 * @param dir
 	 * @param fileConfArr
@@ -125,7 +134,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * list保留順序去重
+	 * list保留顺序去重
 	 * 
 	 * @param list
 	 * @return
