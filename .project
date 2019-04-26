@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>interfaceTest</name>
+=======
+	<name>interfaceAutoTest</name>
+>>>>>>> branch 'dev' of git@github.com:angz0116/interfaceTest.git
 	<comment></comment>
 	<projects>
 	</projects>
