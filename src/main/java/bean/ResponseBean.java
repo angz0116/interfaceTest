@@ -1,6 +1,5 @@
 package bean;
 /**
- * ½âÎöResponse
  * @author admin
  *
  */

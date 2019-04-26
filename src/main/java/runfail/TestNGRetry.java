@@ -1,9 +1,34 @@
 package runfail;
+
+import org.testng.IRetryAnalyzer;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+
+import exceptions.ErrorRespStatusException;
 /**
- * Ê§°ÜÓÃÀýÖØÅÜ
+ * Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author admin
  *
  */
-public class TestNGRetry {
+public class TestNGRetry implements IRetryAnalyzer {
+	private static int retryCount = 1;
+	private static int maxRetryCount = 2;
 
+	public boolean retry(ITestResult result) {
+		// TODO Auto-generated method stub
+		if (result.getThrowable() instanceof ErrorRespStatusException && retryCount % maxRetryCount != 0) {
+			Reporter.setCurrentTestResult(result);		
+			
+			Reporter.log("RunCount=" + (retryCount + 1));
+			retryCount++;
+			return true;
+		} else {
+			resetRetryCount();
+			return false;
+		}
+	}
+
+	public static void resetRetryCount() {
+		retryCount = 1;
+	}
 }

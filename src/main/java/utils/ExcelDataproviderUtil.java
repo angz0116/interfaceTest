@@ -19,9 +19,9 @@ public class ExcelDataproviderUtil implements Iterator<Object[]> {
     }
     private String path;
     private String sheetName;
-    String[] clomnName;
-    Iterator<Row> rowIterator;
-    Map<String, Workbook> workbookMap = new HashMap<>();
+    private String[] clomnName;
+    private Iterator<Row> rowIterator;
+    private Map<String, Workbook> workbookMap = new HashMap<String, Workbook>();
 
     public ExcelDataproviderUtil(String path, String sheetName) {
         this.path = path;
@@ -71,7 +71,9 @@ public class ExcelDataproviderUtil implements Iterator<Object[]> {
         }
     }
 
-    @Override
+
+	@SuppressWarnings("deprecation")
+	@Override
     public Object[] next() {
         sureInit();
         flag = false;

@@ -4,24 +4,13 @@ import java.sql.*;
 import java.util.*;
 
 public class MySQLDataProviderUtil implements Iterator<Object[]> {
-    public static void main(String[] args) {
-    	MySQLDataProviderUtil mysqlDataproviderUtil = new MySQLDataProviderUtil("SELECT * FROM `Organizers`", "test.");
-        for (int i = 0; i < 3; i++) {
-            if (mysqlDataproviderUtil.hasNext()){
-                Object[] next = mysqlDataproviderUtil.next();
-                System.out.println(Arrays.toString(next));}
-        }
-
-
-    }
-
     private String sql;
     private String prefix;
-    Connection conn;
-    PreparedStatement statement;
+    private Connection conn;
+    private PreparedStatement statement;
     private ResultSet resultSet;
-    String[] columnName;
-    Map<String, ResultSet> sureInitMap = new HashMap<>();
+    private String [] columnName;
+    private Map<String, ResultSet> sureInitMap = new HashMap<String, ResultSet>();
 
     /**
      * 构造函数
@@ -77,11 +66,11 @@ public class MySQLDataProviderUtil implements Iterator<Object[]> {
     Boolean flag = false;//消除next带来的副作用
     @Override
     public boolean hasNext() {
+    	boolean temp = false;
         sureInit();
         if (flag) {
             return true;
         }
-    boolean temp = false;
         try {
             temp = resultSet.next();
         } catch (SQLException e) {
@@ -124,5 +113,14 @@ public class MySQLDataProviderUtil implements Iterator<Object[]> {
      */
     public void close(){
         JDBCUtil.close(conn,resultSet,statement);
+    }
+    
+    public static void main(String[] args) {
+    	MySQLDataProviderUtil mysqlDataproviderUtil = new MySQLDataProviderUtil("SELECT * FROM `Organizers`", "test.");
+        for (int i = 0; i < 3; i++) {
+            if (mysqlDataproviderUtil.hasNext()){
+                Object[] next = mysqlDataproviderUtil.next();
+                System.out.println(Arrays.toString(next));}
+        }
     }
 }
