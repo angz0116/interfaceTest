@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <rootUrl>http://api-test.scimall.org.cn</rootUrl>
+    <headers>
+        <header name="Content-Type" value="application/x-www-form-urlencoded;charset=UTF-8"></header>
+    </headers>
+    <params>
+    	<param name="test" value="value"></param>
+    </params>
+</root>
