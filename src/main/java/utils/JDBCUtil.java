@@ -1,21 +1,21 @@
 package utils;
-import utils.PropertiesUtil;
 
 import java.sql.*;
 import java.util.Map;
 
 public class JDBCUtil {
-    private static final String JDBC_DRIVER = "jdbc.driver";
-    private static final String JDBC_URL="jdbc.url";
-    private static final String JDBC_USERNAME="jdbc.username";
-    private static final String JDBC_PWD="jdbc.password";
-    private static final String PATH = "/db.properties";
-	ObjectBase objbase = new ObjectBase();
-	Map<String,String> hm =  objbase.db;
-//保证driver只加载一次
+    private static final String DATABASE= "database";
+    private static final String URL="url";
+    private static final String PORT = "port";
+    private static final String USERNAME="username";
+    private static final String PWD="password";
+    //private static final String PATH = "/db.properties";
+	private static PropertiesUtil propertiesUtil = new PropertiesUtil();
+     //保证driver只加载一次
     static {
         try {
-            Class.forName(JDBC_DRIVER);//PropertiesUtil.getProVal(PATH,JDBC_DRIVER)
+        
+            Class.forName(propertiesUtil.getProperty(DATABASE));//PropertiesUtil.getProVal(PATH,JDBC_DRIVER)
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -26,9 +26,9 @@ public class JDBCUtil {
      * @return
      */
     public static Connection getConn(String prefix){
-        String url = JDBC_URL;//PropertiesUtil.getProVal(PATH, prefix+JDBC_URL);
-        String username = JDBC_USERNAME;//PropertiesUtil.getProVal(PATH, prefix+JDBC_USERNAME);
-        String pwd = JDBC_PWD;//PropertiesUtil.getProVal(PATH, prefix+JDBC_PWD);
+        String url = propertiesUtil.getProperty(URL);//PropertiesUtil.getProVal(PATH, prefix+JDBC_URL);
+        String username = propertiesUtil.getProperty(USERNAME);//PropertiesUtil.getProVal(PATH, prefix+JDBC_USERNAME);
+        String pwd = propertiesUtil.getProperty(PWD);//PropertiesUtil.getProVal(PATH, prefix+JDBC_PWD);
         try {
             Connection connection = DriverManager.getConnection(url, username, pwd);
             return connection;

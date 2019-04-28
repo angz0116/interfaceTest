@@ -3,18 +3,17 @@ package base;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.log4testng.Logger;
 
 /**
- * @Dataprivoderע�����ݷ��������� Iterator<Object[]>
+ * @DataprivoderIterator<Object[]>
  * @author admin
  *
  */
 public class BaseParpare {
 	 public static Logger logger = Logger.getLogger(BaseParpare.class);
-	 public static WebDriver driver;
+
 	    @DataProvider
 	public Iterator<Object[]> testData(Method method) {
 		/*

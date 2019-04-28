@@ -11,25 +11,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
  
 /**
- * 1.MD5¼ÓÃÜ×Ö·û´®£¨32Î»´óĞ´£©
- * 2.MD5¼ÓÃÜ×Ö·û´®£¨32Î»Ğ¡Ğ´£©
+ * 1.MD5åŠ å¯†å­—ç¬¦ä¸²ï¼ˆ32ä½å¤§å†™ï¼‰
+ * 2.MD5åŠ å¯†å­—ç¬¦ä¸²ï¼ˆ32ä½å°å†™ï¼‰
  * <p>
- * MD5ÔÚÏß¼ÓÃÜ£ºhttps://md5jiami.51240.com/
- * 3.½«¶ş½øÖÆ×Ö½ÚÊı×é×ª»»ÎªÊ®Áù½øÖÆ×Ö·û´®
- * 4.UnicodeÖĞÎÄ±àÂë×ª»»³É×Ö·û´®
+ * MD5åœ¨çº¿åŠ å¯†ï¼šhttps://md5jiami.51240.com/
+ * 3.å°†äºŒè¿›åˆ¶å­—èŠ‚æ•°ç»„è½¬æ¢ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
+ * 4.Unicodeä¸­æ–‡ç¼–ç è½¬æ¢æˆå­—ç¬¦ä¸²
  */
 public class MD5Util {
  
     /**
-     * MD5¼ÓÃÜ×Ö·û´®£¨32Î»´óĞ´£©
+     * MD5åŠ å¯†å­—ç¬¦ä¸²ï¼ˆ32ä½å¤§å†™ï¼‰
      *
-     * @param string ĞèÒª½øĞĞMD5¼ÓÃÜµÄ×Ö·û´®
-     * @return ¼ÓÃÜºóµÄ×Ö·û´®£¨´óĞ´£©
+     * @param string éœ€è¦è¿›è¡ŒMD5åŠ å¯†çš„å­—ç¬¦ä¸²
+     * @return åŠ å¯†åçš„å­—ç¬¦ä¸²ï¼ˆå¤§å†™ï¼‰
      */
     public static String md5Encrypt32Upper(String string) {
         byte[] hash;
         try {
-            //´´½¨Ò»¸öMD5Ëã·¨¶ÔÏó£¬²¢»ñµÃMD5×Ö½ÚÊı×é,16*8=128Î»
+            //åˆ›å»ºä¸€ä¸ªMD5ç®—æ³•å¯¹è±¡ï¼Œå¹¶è·å¾—MD5å­—èŠ‚æ•°ç»„,16*8=128ä½
             hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, MD5 should be supported?", e);
@@ -37,7 +37,7 @@ public class MD5Util {
             throw new RuntimeException("Huh, UTF-8 should be supported?", e);
         }
  
-        //×ª»»ÎªÊ®Áù½øÖÆ×Ö·û´®
+        //è½¬æ¢ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
         StringBuilder hex = new StringBuilder(hash.length * 2);
         for (byte b : hash) {
             if ((b & 0xFF) < 0x10) hex.append("0");
@@ -47,15 +47,15 @@ public class MD5Util {
     }
  
     /**
-     * MD5¼ÓÃÜ×Ö·û´®£¨32Î»Ğ¡Ğ´£©
+     * MD5åŠ å¯†å­—ç¬¦ä¸²ï¼ˆ32ä½å°å†™ï¼‰
      *
-     * @param string ĞèÒª½øĞĞMD5¼ÓÃÜµÄ×Ö·û´®
-     * @return ¼ÓÃÜºóµÄ×Ö·û´®£¨Ğ¡Ğ´£©
+     * @param string éœ€è¦è¿›è¡ŒMD5åŠ å¯†çš„å­—ç¬¦ä¸²
+     * @return åŠ å¯†åçš„å­—ç¬¦ä¸²ï¼ˆå°å†™ï¼‰
      */
     public static String md5Encrypt32Lower(String string) {
         byte[] hash;
         try {
-            //´´½¨Ò»¸öMD5Ëã·¨¶ÔÏó£¬²¢»ñµÃMD5×Ö½ÚÊı×é,16*8=128Î»
+            //åˆ›å»ºä¸€ä¸ªMD5ç®—æ³•å¯¹è±¡ï¼Œå¹¶è·å¾—MD5å­—èŠ‚æ•°ç»„,16*8=128ä½
             hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, MD5 should be supported?", e);
@@ -63,7 +63,7 @@ public class MD5Util {
             throw new RuntimeException("Huh, UTF-8 should be supported?", e);
         }
  
-        //×ª»»ÎªÊ®Áù½øÖÆ×Ö·û´®
+        //è½¬æ¢ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
         StringBuilder hex = new StringBuilder(hash.length * 2);
         for (byte b : hash) {
             if ((b & 0xFF) < 0x10) hex.append("0");
@@ -73,10 +73,10 @@ public class MD5Util {
     }
  
     /**
-     * ½«¶ş½øÖÆ×Ö½ÚÊı×é×ª»»ÎªÊ®Áù½øÖÆ×Ö·û´®
+     * å°†äºŒè¿›åˆ¶å­—èŠ‚æ•°ç»„è½¬æ¢ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
      *
-     * @param bytes ¶ş½øÖÆ×Ö½ÚÊı×é
-     * @return Ê®Áù½øÖÆ×Ö·û´®
+     * @param bytes äºŒè¿›åˆ¶å­—èŠ‚æ•°ç»„
+     * @return åå…­è¿›åˆ¶å­—ç¬¦ä¸²
      */
     public static String bytesToHex(byte[] bytes) {
         StringBuffer hexStr = new StringBuffer();
@@ -95,7 +95,7 @@ public class MD5Util {
     }
  
     /**
-     * UnicodeÖĞÎÄ±àÂë×ª»»³É×Ö·û´®
+     * Unicodeä¸­æ–‡ç¼–ç è½¬æ¢æˆå­—ç¬¦ä¸²
      */
     public static String unicodeToString(String str) {
         Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
@@ -110,11 +110,11 @@ public class MD5Util {
 
     /**
      * 
-     * @param path  ÇëÇóÂ·¾¶£¬ÓòÃûºÍÎÊºÅÖ®¼äµÄ²¿·Ö
+     * @param path  è¯·æ±‚è·¯å¾„ï¼ŒåŸŸåå’Œé—®å·ä¹‹é—´çš„éƒ¨åˆ†
      * @param appId
      * @param timeStamp
      * @param secretKey
-     * @param params  ËùÓĞµÄÇëÇó²ÎÊı×é³ÉµÄmap
+     * @param params  æ‰€æœ‰çš„è¯·æ±‚å‚æ•°ç»„æˆçš„map
      * @return
      */
     public static String buildSn(String path,String appId, String timeStamp, String secretKey, Map<String, String> params){

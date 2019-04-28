@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -180,8 +181,7 @@ public class ExcelUtil {
 				method.invoke(obj, new BigDecimal(value.toString()).shortValue());
 			} else if (Boolean.class.equals(param)
 					|| boolean.class.equals(param)) {
-				method.invoke(obj, Boolean.valueOf(value.toString())
-						|| value.toString().toLowerCase().equals("y"));
+				method.invoke(obj, Boolean.valueOf(value.toString())|| value.toString().toLowerCase().equals("Y"));
 			} else if (JSONObject.class.equals(param)
 					|| JSONObject.class.equals(param)) {
 				method.invoke(obj, JSONObject.parseObject(value.toString()));
@@ -207,16 +207,15 @@ public class ExcelUtil {
 		if (null == cell) {
 			return "";
 		}
-		/*else if (cell.getCellType() == Cell.class) {
+		else if (cell.getCellType() == CellType.BOOLEAN) {
 			// 返回布尔类型的值
 			return String.valueOf(cell.getBooleanCellValue());
-		} else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+		} else if (cell.getCellType() == CellType.NUMERIC) {
 			// 返回数值类型的值
 			return String.valueOf(cell.getNumericCellValue());
 		} else {
 			// 返回字符串类型的值
 			return String.valueOf(cell.getStringCellValue());
-		}*/
-		return null;
+		}
 	}
 }

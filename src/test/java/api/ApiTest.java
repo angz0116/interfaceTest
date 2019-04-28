@@ -31,19 +31,27 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.google.protobuf.Api;
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-
+import io.restassured.RestAssured;
 import bean.ApiDataBean;
-import configs.ApiConfig;
+import bean.Restful;
+
 import exceptions.ErrorRespStatusException;
 import httputils.SSLClient;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import runfail.RetryListener;
 import runfail.TestNGListener;
 import utils.BaseUtils;
@@ -51,7 +59,7 @@ import utils.DecodeUtil;
 import utils.RandomUtil;
 import utils.ReportUtil;
 import utils.StringUtil;
-
+import static io.restassured.RestAssured.*;
 
 @Listeners({TestNGListener.class, RetryListener.class })
 public class ApiTest extends TestBase {
@@ -71,43 +79,12 @@ public class ApiTest extends TestBase {
 	 */
 	private static Header[] publicHeaders;
 
-	private static ApiConfig apiConfig;
 	/**
 	 * 所有api测试用例数据
 	 */
 	protected List<ApiDataBean> dataList = new ArrayList<ApiDataBean>();
-
-	/**
-	 * 初始化测试数据
-	 * 
-	 * @throws ErrorRespStatusException
-	 * @throws IOException
-	 * @throws ClientProtocolException
-	 * @throws UnsupportedEncodingException
-	 * @throws Exception
-	 */
-	@BeforeSuite
-	public void init(ITestContext context) throws UnsupportedEncodingException,
-			ClientProtocolException, IOException, ErrorRespStatusException,
-			Exception {
-		String configFilePath = Paths.get(System.getProperty("user.dir") , "api-config.xml").toString();
-		ReportUtil.log("api config path:"+configFilePath);
-		apiConfig = new ApiConfig(configFilePath);
-		// 获取基础数据
-		rootUrl = apiConfig.getRootUrl();
-		rootUrlEndWithSlash = rootUrl.endsWith("/");
-
-		// 读取 param，并将值保存到公共数据map
-		Map<String, String> params = apiConfig.getParams();
-		setSaveDates(params);
-
-		List<Header> headers = new ArrayList<Header>();
-		apiConfig.getHeaders().forEach((key,value)->{
-			Header header = new BasicHeader(key,value);
-			headers.add(header);
-		});
-		publicHeaders = headers.toArray(new Header[headers.size()]);
-
+	public ApiTest() {
+		  useRelaxedHTTPSValidation();
 	}
 	/**
 	 * 过滤数据，run标记为Y的执行。
@@ -136,8 +113,7 @@ public class ApiTest extends TestBase {
 		String apiParam = buildRequestParam(apiDataBean);
 		
 		// 封装请求方法
-		HttpUriRequest method = parseHttpRequest(apiDataBean.getUrl(),
-				apiDataBean.getMethod(), apiParam);
+		HttpUriRequest method = parseHttpRequest(apiDataBean.getUrl(),apiDataBean.getMethod(), apiParam);
 		HttpClient client = new SSLClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 60000); // 请求超时
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 60000); // 读取超时
@@ -160,8 +136,7 @@ public class ApiTest extends TestBase {
 			String conDisposition = response.getFirstHeader("Content-disposition").getValue();
 			String fileType = conDisposition.substring(
 					conDisposition.lastIndexOf("."), conDisposition.length());
-			String filePath = "download/" + RandomUtil.getRandom(8, false)
-					+ fileType;
+			String filePath = "download/" + RandomUtil.getRandom(8, false)+ fileType;
 			InputStream is = response.getEntity().getContent();
 			Assert.assertTrue(BaseUtils.writeFile(is, filePath), "下载文件失败。");
 			// 将下载文件的路径放到{"filePath":"xxxxx"}进行返回
@@ -173,8 +148,7 @@ public class ApiTest extends TestBase {
 		// 输出返回数据log
 		ReportUtil.log("resp:" + responseData);
 		// 验证预期信息
-		verifyResult(responseData, apiDataBean.getVerify(),
-				apiDataBean.isContains());
+		verifyResult(responseData, apiDataBean.getVerify(),apiDataBean.isContains());
 
 		// 对返回结果进行提取保存。
 		saveResult(responseData, apiDataBean.getSave());
@@ -217,7 +191,7 @@ public class ApiTest extends TestBase {
 			HttpEntity entity = new StringEntity(param, "UTF-8");
 			postMethod.setEntity(entity);
 			return postMethod;
-		} else if ("upload".equalsIgnoreCase(method)) {
+		}else if ("upload".equalsIgnoreCase(method)) {
 			HttpPost postMethod = new HttpPost(url);
 			@SuppressWarnings("unchecked")
 			Map<String, String> paramMap = JSON.parseObject(param, HashMap.class);
@@ -239,7 +213,7 @@ public class ApiTest extends TestBase {
 			HttpGet getMethod = new HttpGet(url);
 			getMethod.setHeaders(publicHeaders);
 			return getMethod;
-		}// delete put....
+		}
 	}
 
 	/**
@@ -272,7 +246,7 @@ public class ApiTest extends TestBase {
         if(null == Token||"".equals(Token)){
             new Exception("token不存在");
         }
-        responseToken.put("x-ba-token",Token);
+        responseToken.put("token",Token);
         return responseToken;
     }
     //获取状态码
@@ -280,5 +254,5 @@ public class ApiTest extends TestBase {
         int StatusCode = httpResponse.getStatusLine().getStatusCode();
         return StatusCode;
     }
-
+    
 }

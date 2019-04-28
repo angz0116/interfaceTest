@@ -12,14 +12,6 @@ import java.util.Map;
  *
  */
 public class ExcelDataproviderUtil implements Iterator<Object[]> {
-    public static void main(String[] args) {
-        ExcelDataproviderUtil excelDataproviderUtil = new ExcelDataproviderUtil("/testdata/login.xlsx", "Sheet1");
-        while (excelDataproviderUtil.hasNext()){
-            Object[] next = excelDataproviderUtil.next();
-            System.out.println(Arrays.deepToString(next));
-        }
-
-    }
     private String path;
     private String sheetName;
     private String[] clomnName;

@@ -2,25 +2,26 @@ package appinterface;
 
 import org.testng.annotations.Test;
 
-import io.qameta.allure.Step;
+import api.ApiTest;
 import runfail.TestFailListener;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
-import java.util.Map;
 
 import org.testng.annotations.AfterClass;
 
 
 
 @Listeners({TestFailListener.class})
-public class Test1 {
+public class Test1 extends ApiTest{
   public static final String PAGE_PATH = "";
   public static final String LOGIN_PAGE_NAME = "";
   
   @Test
   public void f() {
 	 System.out.println("testng测试");
+
+
   }
 
 	/*

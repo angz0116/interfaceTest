@@ -18,7 +18,6 @@ import utils.StringUtil;
  *
  */
 public class BaseUtils {
-	public static ObjectBase pageobjectsbase = new ObjectBase();
 	/**
 	   *   获得当前项目的根目录
 	 * @return

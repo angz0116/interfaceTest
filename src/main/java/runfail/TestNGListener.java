@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 /**
   *    测试案例testNg的listener(成功，失败，跳过，保存结果，是否完成)
@@ -38,10 +39,8 @@ public class TestNGListener extends TestListenerAdapter {
 		if (null == throwable) {
 			return;
 		}
-		// String imgPath = WebdriverUtil.captureEntirePageScreenshot();
-		// log.error("用例执行错误截图：" + imgPath);
-		// Reporter.setCurrentTestResult(tr);
-		// Reporter.log("path path path path");
+		 Reporter.setCurrentTestResult(tr);
+		 Reporter.log("保存结果");
 	}
 
 	@Override

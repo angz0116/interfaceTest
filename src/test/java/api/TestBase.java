@@ -60,8 +60,7 @@ public class TestBase {
 			String args = m.group(2);
 			String value;
 			// bodyfile属于特殊情况，不进行匹配，在post请求的时候进行处理
-			if (FunctionUtil.isFunction(funcName)
-					&& !funcName.equals("bodyfile")) {
+			if (FunctionUtil.isFunction(funcName)&& !funcName.equals("bodyfile")) {
 				// 属于函数助手，调用那个函数助手获取。
 				value = FunctionUtil.getValue(funcName, args.split(","));
 				// 解析对应的函数失败
@@ -232,15 +231,13 @@ public class TestBase {
 		List<T> allExcelData = new ArrayList<T>();// excel文件數組
 		List<T> temArrayList = new ArrayList<T>();
 		for (String excelPath : excelPathArr) {
-			File file = Paths.get(System.getProperty("user.dir"),
-					excelPath).toFile();
+			File file = Paths.get(System.getProperty("user.dir"),excelPath).toFile();
 			temArrayList.clear();
 			if (sheetNameArr.length == 0 || sheetNameArr[0] == "") {
 				temArrayList = ExcelUtil.readExcel(clz, file.getAbsolutePath());
 			} else {
 				for (String sheetName : sheetNameArr) {
-					temArrayList.addAll(ExcelUtil.readExcel(clz,
-							file.getAbsolutePath(), sheetName));
+					temArrayList.addAll(ExcelUtil.readExcel(clz,file.getAbsolutePath(), sheetName));
 				}
 			}
 			temArrayList.forEach((bean) -> {

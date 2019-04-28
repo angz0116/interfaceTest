@@ -3,6 +3,7 @@
   <test name="Test">
     <classes>
       <class name="appinterface.Test1"/>
+       <class name="appinterface.Test2"/>
     </classes>
   </test> <!-- Test -->
   <listeners>
