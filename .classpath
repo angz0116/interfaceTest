@@ -34,12 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
->>>>>>> branch 'dev' of git@github.com:angz0116/interfaceTest.git
->>>>>>> branch 'origin' of git@github.com:angz0116/interfaceTest.git
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
